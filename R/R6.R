@@ -149,3 +149,20 @@ get_wrapper <- function(self, url) {
     ))
   )
 }
+
+
+
+
+#' Test connection
+#'
+#' @param url A NEO4JAPI connection object
+#'
+#' @return the result from the Neo4J Call
+#' @export
+
+test_con <- function(url) {
+
+  out <- db_connect(url)
+
+  return(out)
+}
