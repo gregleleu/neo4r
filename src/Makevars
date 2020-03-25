@@ -1,1 +1,1 @@
-PKG_LIBS =  -lneo4j-client
+PKG_LIBS =  /Users/gregoireleleu/Downloads/seabolt-1.7.4/build/lib/libseabolt17.a
