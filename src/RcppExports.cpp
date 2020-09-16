@@ -6,42 +6,60 @@
 using namespace Rcpp;
 
 // pkg_load
-IntegerVector pkg_load();
+void pkg_load();
 RcppExport SEXP _neo4r_pkg_load() {
 BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(pkg_load());
-    return rcpp_result_gen;
+    pkg_load();
+    return R_NilValue;
+END_RCPP
+}
+// pkg_unload
+void pkg_unload();
+RcppExport SEXP _neo4r_pkg_unload() {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    pkg_unload();
+    return R_NilValue;
 END_RCPP
 }
 // db_connect
-/* use NEO4J_INSECURE when connecting to disable TLS */ SEXP db_connect(SEXP rurl);
-RcppExport SEXP _neo4r_db_connect(SEXP rurlSEXP) {
+SEXP db_connect();
+RcppExport SEXP _neo4r_db_connect() {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< SEXP >::type rurl(rurlSEXP);
-    rcpp_result_gen = Rcpp::wrap(db_connect(rurl));
+    rcpp_result_gen = Rcpp::wrap(db_connect());
     return rcpp_result_gen;
 END_RCPP
 }
 // db_disconnect
-/* use NEO4J_INSECURE when connecting to disable TLS */ IntegerVector db_disconnect(SEXP conn);
-RcppExport SEXP _neo4r_db_disconnect(SEXP connSEXP) {
+void db_disconnect(SEXP r_conn);
+RcppExport SEXP _neo4r_db_disconnect(SEXP r_connSEXP) {
 BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< SEXP >::type conn(connSEXP);
-    rcpp_result_gen = Rcpp::wrap(db_disconnect(conn));
-    return rcpp_result_gen;
+    Rcpp::traits::input_parameter< SEXP >::type r_conn(r_connSEXP);
+    db_disconnect(r_conn);
+    return R_NilValue;
+END_RCPP
+}
+// test_query
+void test_query(SEXP r_conn);
+RcppExport SEXP _neo4r_test_query(SEXP r_connSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type r_conn(r_connSEXP);
+    test_query(r_conn);
+    return R_NilValue;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
     {"_neo4r_pkg_load", (DL_FUNC) &_neo4r_pkg_load, 0},
-    {"_neo4r_db_connect", (DL_FUNC) &_neo4r_db_connect, 1},
+    {"_neo4r_pkg_unload", (DL_FUNC) &_neo4r_pkg_unload, 0},
+    {"_neo4r_db_connect", (DL_FUNC) &_neo4r_db_connect, 0},
     {"_neo4r_db_disconnect", (DL_FUNC) &_neo4r_db_disconnect, 1},
+    {"_neo4r_test_query", (DL_FUNC) &_neo4r_test_query, 1},
     {NULL, NULL, 0}
 };
 

@@ -2,14 +2,22 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 pkg_load <- function() {
-    .Call(`_neo4r_pkg_load`)
+    invisible(.Call(`_neo4r_pkg_load`))
 }
 
-db_connect <- function(rurl) {
-    .Call(`_neo4r_db_connect`, rurl)
+pkg_unload <- function() {
+    invisible(.Call(`_neo4r_pkg_unload`))
 }
 
-db_disconnect <- function(conn) {
-    .Call(`_neo4r_db_disconnect`, conn)
+db_connect <- function() {
+    .Call(`_neo4r_db_connect`)
+}
+
+db_disconnect <- function(r_conn) {
+    invisible(.Call(`_neo4r_db_disconnect`, r_conn))
+}
+
+test_query <- function(r_conn) {
+    invisible(.Call(`_neo4r_test_query`, r_conn))
 }
 
